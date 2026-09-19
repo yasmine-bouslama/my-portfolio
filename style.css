@@ -20,9 +20,9 @@
   --radius: 12px;
 }
 body.light {
-  --bg: #f5f8ff;
+  --bg: #ffffff;
   --surface: #ffffff;
-  --surface2: #eaf0fc;
+  --surface2: #f4f7fc;
   --border-soft: rgba(37, 99, 235, 0.12);
   --text: #171a30;
   --text-muted: #44507a;
