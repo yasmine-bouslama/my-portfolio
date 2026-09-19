@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <body>
-  <canvas id="dots"></canvas>
     <nav>
       <div class="nav-logo">YasmineB<span>.</span></div>
       <div class="nav-center">
@@ -416,10 +414,10 @@
               </p>
               <p
                 class="tl-org"
-                data-en="Scouting Organization,Nabeul, Tunisia"
-                data-fr="Organisation scoute, Nabeul,Tunisia"
+                data-en="Scouting Organization, Nabeul, Tunisia"
+                data-fr="Organisation scoute, Nabeul, Tunisie"
               >
-                Scouting Organization, Nabeul,Tunisia
+                Scouting Organization, Nabeul, Tunisia
               </p>
               <ul class="tl-desc">
                 <li
@@ -538,47 +536,46 @@
                 </li>
               </ul>
             </div>
-            <div class="timeline">
-  <div class="tl-item">
-    <div class="tl-date" data-en="September 2026" data-fr="Septembre 2026">
-      September 2026
-    </div>
-    <div class="tl-line">
-      <div class="tl-dot"></div>
-      <div class="tl-track"></div>
-    </div>
-    <div class="tl-body">
-      <p
-        class="tl-role"
-        data-en="Intro to Machine Learning Certificate"
-        data-fr="Certificat - Introduction au Machine Learning"
-      >
-        Intro to Machine Learning Certificate
-      </p>
-      <p
-        class="tl-org"
-        data-en="Kaggle"
-        data-fr="Kaggle"
-      >
-        Kaggle
-      </p>
-      <ul class="tl-desc">
-        <li
-          data-en="Mastered core concepts of machine learning including decision trees, random forests, and model validation"
-          data-fr="Maîtrise des concepts clés du machine learning, notamment les arbres de décision, les forêts aléatoires et la validation de modèles"
-        >
-          Mastered core concepts of machine learning including decision trees, random forests, and model validation
-        </li>
-        <li
-          data-en="Built and fine-tuned predictive models to evaluate performance and optimize mean absolute error (MAE)"
-          data-fr="Construction et optimisation de modèles prédictifs pour évaluer les performances et optimiser l'erreur absolue moyenne (MAE)"
-        >
-          Built and fine-tuned predictive models to evaluate performance and optimize mean absolute error (MAE)
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-date" data-en="September 2026" data-fr="Septembre 2026">
+              September 2026
+            </div>
+            <div class="tl-line">
+              <div class="tl-dot"></div>
+              <div class="tl-track"></div>
+            </div>
+            <div class="tl-body">
+              <p
+                class="tl-role"
+                data-en="Intro to Machine Learning Certificate"
+                data-fr="Certificat - Introduction au Machine Learning"
+              >
+                Intro to Machine Learning Certificate
+              </p>
+              <p
+                class="tl-org"
+                data-en="Kaggle"
+                data-fr="Kaggle"
+              >
+                Kaggle
+              </p>
+              <ul class="tl-desc">
+                <li
+                  data-en="Mastered core concepts of machine learning including decision trees, random forests, and model validation"
+                  data-fr="Maîtrise des concepts clés du machine learning, notamment les arbres de décision, les forêts aléatoires et la validation de modèles"
+                >
+                  Mastered core concepts of machine learning including decision trees, random forests, and model validation
+                </li>
+                <li
+                  data-en="Built and fine-tuned predictive models to evaluate performance and optimize mean absolute error (MAE)"
+                  data-fr="Construction et optimisation de modèles prédictifs pour évaluer les performances et optimiser l'erreur absolue moyenne (MAE)"
+                >
+                  Built and fine-tuned predictive models to evaluate performance and optimize mean absolute error (MAE)
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -586,6 +583,7 @@
 
     <!-- ═══════════════ PERSONAL PAGE ═══════════════ -->
     <div id="page-personal" class="page">
+      <canvas id="dots"></canvas>
       <div class="hero">
         
         <div class="hero-inner">
@@ -1192,7 +1190,7 @@
       });
 
       // ==========================================
-      // PARTIE MODIFIÉE : ANIMATION DU CANVAS RETRAVAILLÉE
+      // Background dot animation for the personal page
       // ==========================================
       let dotsRunning = false;
       function initDots() {
