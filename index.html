@@ -1171,7 +1171,8 @@
                   my = (a.y + b.y) / 2 - mouse.y;
                 const boost = Math.sqrt(mx * mx + my * my) < 120 ? 1.8 : 1;
 
-                ctx.strokeStyle = `rgba(124,58,237,${(1 - d / CONN) * 0.22 * boost})`;
+                ctx.strokeStyle = `rgba(37,99,235,${(1 - d / CONN) * 0.22 * boost})`;
+                ctx.fillStyle = `rgba(96,165,250,${near ? 0.9 : 0.3 + 0.25 * Math.sin(p.v)})`;
                 ctx.lineWidth = 0.8;
                 ctx.beginPath();
                 ctx.moveTo(a.x + Math.cos(a.v) * 4, a.y + Math.sin(a.v) * 4);
