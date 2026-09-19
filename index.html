@@ -923,7 +923,7 @@
                     data-en="MASS'ART Theatre Group, Tunis"
                     data-fr="MASS'ART Groupe de Théâtre, Tunis"
                   >
-                    MASS'ART Theatre Group, Tunis
+                    MASS'ART Groupe de Théâtre, Tunis
                   </p>
                 </div>
                 <span class="activity-years">2019 – 2023</span>
@@ -1020,6 +1020,13 @@
       >
     </footer>
 
+    <!-- Lightbox overlay for gallery images -->
+    <div id="lightbox" class="lightbox">
+      <div class="lightbox-backdrop"></div>
+      <button class="lightbox-close" aria-label="Close">&times;</button>
+      <img id="lightbox-img" class="lightbox-img" src="" alt="" />
+    </div>
+
     <script>
       let lang = "en";
       let dark = true;
@@ -1058,9 +1065,9 @@
         });
       }
 
-      document
-        .getElementById("photo-input")
-        .addEventListener("change", function (e) {
+      const photoInput = document.getElementById("photo-input");
+      if (photoInput) {
+        photoInput.addEventListener("change", function (e) {
           const file = e.target.files[0];
           if (!file) return;
           const reader = new FileReader();
@@ -1068,41 +1075,79 @@
             const img = document.getElementById("hero-photo-img");
             img.src = ev.target.result;
             img.style.display = "block";
-            document.getElementById("photo-placeholder").style.display = "none";
+            const placeholder = document.getElementById("photo-placeholder");
+            if (placeholder) placeholder.style.display = "none";
           };
           reader.readAsDataURL(file);
         });
+      }
 
       document.querySelectorAll(".gallery-slot").forEach((slot) => {
         const input = slot.querySelector("input[type=file]");
         const removeBtn = slot.querySelector(".remove-btn");
         const placeholder = slot.querySelector(".slot-placeholder");
 
-        input.addEventListener("change", function (e) {
-          const file = e.target.files[0];
-          if (!file) return;
-          const reader = new FileReader();
-          reader.onload = (ev) => {
-            let img = slot.querySelector("img");
-            if (!img) {
-              img = document.createElement("img");
-              slot.insertBefore(img, slot.firstChild);
-            }
-            img.src = ev.target.result;
-            if (placeholder) placeholder.style.display = "none";
-            slot.style.border = "1px solid var(--border-soft)";
-          };
-          reader.readAsDataURL(file);
-        });
+        if (input) {
+          input.addEventListener("change", function (e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+              let img = slot.querySelector("img");
+              if (!img) {
+                img = document.createElement("img");
+                slot.insertBefore(img, slot.firstChild);
+              }
+              img.src = ev.target.result;
+              if (placeholder) placeholder.style.display = "none";
+              slot.style.border = "1px solid var(--border-soft)";
+            };
+            reader.readAsDataURL(file);
+          });
+        }
 
-        removeBtn.addEventListener("click", function (e) {
-          e.stopPropagation();
-          const img = slot.querySelector("img");
-          if (img) img.remove();
-          if (placeholder) placeholder.style.display = "flex";
-          input.value = "";
-          slot.style.border = "";
-        });
+        if (removeBtn) {
+          removeBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            const img = slot.querySelector("img");
+            if (img) img.remove();
+            if (placeholder) placeholder.style.display = "flex";
+            if (input) input.value = "";
+            slot.style.border = "";
+          });
+        }
+      });
+
+      // ==========================================
+      // LIGHTBOX — click a gallery image to enlarge it
+      // over a blurred backdrop
+      // ==========================================
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const lightboxBackdrop = document.querySelector(".lightbox-backdrop");
+      const lightboxClose = document.querySelector(".lightbox-close");
+
+      function openLightbox(src, alt) {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || "";
+        lightbox.classList.add("active");
+        document.body.classList.add("lightbox-open");
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("active");
+        document.body.classList.remove("lightbox-open");
+        lightboxImg.src = "";
+      }
+
+      document.querySelectorAll(".gallery-slot img").forEach((img) => {
+        img.addEventListener("click", () => openLightbox(img.src, img.alt));
+      });
+
+      lightboxBackdrop.addEventListener("click", closeLightbox);
+      lightboxClose.addEventListener("click", closeLightbox);
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeLightbox();
       });
 
       // ==========================================
@@ -1172,7 +1217,6 @@
                 const boost = Math.sqrt(mx * mx + my * my) < 120 ? 1.8 : 1;
 
                 ctx.strokeStyle = `rgba(37,99,235,${(1 - d / CONN) * 0.22 * boost})`;
-                ctx.fillStyle = `rgba(96,165,250,${near ? 0.9 : 0.3 + 0.25 * Math.sin(p.v)})`;
                 ctx.lineWidth = 0.8;
                 ctx.beginPath();
                 ctx.moveTo(a.x + Math.cos(a.v) * 4, a.y + Math.sin(a.v) * 4);
@@ -1188,7 +1232,7 @@
               md = Math.sqrt(dx * dx + dy * dy);
             const near = md < 120;
 
-            ctx.fillStyle = `rgba(167,139,250,${near ? 0.9 : 0.3 + 0.25 * Math.sin(p.v)})`;
+            ctx.fillStyle = `rgba(96,165,250,${near ? 0.9 : 0.3 + 0.25 * Math.sin(p.v)})`;
             ctx.beginPath();
 
             const finalX = p.x + Math.cos(p.v) * 4;
